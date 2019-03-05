@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import './Calculator.css'
-import  Calculator from './Calculator'
+import './Timer.css'
+import Timer from './Timer'
 
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -13,10 +13,10 @@ class App extends Component {
       <div className='App'>
         <Paper id='title'>
           <Typography variant='h3' align='center'>
-            CALCULON
+            Pomodoro Clock
           </Typography>
         </Paper>
-        <Calculator />
+        <Timer/>
         <div id='footer'>
           <Chip
             label={`A freeCodeCamp project by Hugh O'Neill`}

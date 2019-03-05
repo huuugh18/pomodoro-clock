@@ -1,0 +1,59 @@
+#timer{
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+        'timerSettings'
+        'timerDisplay'
+        'timerControls'; 
+}
+
+#timer-setting{
+    grid-area: timerSettings;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-areas: 
+        'breakControl sessionControl';
+    
+}
+#break-container{
+    grid-area: breakControl;
+}
+#session-container{
+    grid-area: sessionControl;
+}
+
+.setting-container{
+    display: grid;
+    grid-template-areas:
+        'label label label'
+        'decrement length increment';
+    grid-template-columns: 1fr 60px 1fr;
+
+}
+.label{
+    grid-area: label;
+    justify-self: center;
+}
+.decrementBtn{
+    grid-area: decrement;
+    justify-self: end;
+}
+.incrementBtn{
+    grid-area: increment;
+    justify-self: start;
+}
+.lengthDisplay{
+    grid-area: length;
+    justify-self: center;
+}
+
+#timer-display{
+    grid-area:timerDisplay;
+    justify-self: center;
+}
+#timer-controls{
+    grid-area:timerControls;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
