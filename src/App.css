@@ -1,0 +1,30 @@
+.App {
+  background-image: url('./bg-cyber.jpg');
+  min-height: 100vh;
+  display: grid;
+  grid-template-areas: 
+    "title title title"
+    ". calculator ."
+    "footer footer footer";
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: 1fr 300px 1fr;
+  grid-template-rows: 250px auto auto auto auto
+}
+.App-link {
+  color: #61dafb;
+}
+#title{
+  grid-area: title;
+  width: auto;
+  min-width: 300px;
+  padding: 25px;
+}
+#calculator{
+  grid-area: calculator;
+  width: 100%;
+}
+#footer{
+  grid-area: footer;
+}
+
