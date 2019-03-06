@@ -16,57 +16,32 @@ class Timer extends Component {
       timerState: 'stopped', // state either stopped, running or paused
       timeLeft: 'mm:ss'
     }
-      this.onClickStartStop = this.onClickStartStop.bind(this)
-      this.onClickReset = this.onClickReset.bind(this)
-      this.onDecrementBreak = this.onDecrementBreak.bind(this)
-      this.onIncrementBreak = this.onIncrementBreak.bind(this)
-      this.onIncrementSession = this.onIncrementSession.bind(this)
-      this.onDecrementSession = this.onDecrementSession.bind(this)
+    this.onClickStartStop = this.onClickStartStop.bind(this)
+    this.onClickReset = this.onClickReset.bind(this)
+    this.onDecrementBreak = this.onDecrementBreak.bind(this)
+    this.onIncrementBreak = this.onIncrementBreak.bind(this)
+    this.onIncrementSession = this.onIncrementSession.bind(this)
+    this.onDecrementSession = this.onDecrementSession.bind(this)
   }
-  onIncrementBreak = () => {
-    // disable if timer running
-    const currentLength = this.state.breakLength
-    if(currentLength < 60){
-      return this.setState({breakLength: currentLength + 1})
-    }
-    
-  }
-  onDecrementBreak = () => {
-    // disable if timer running
-    const currentLength = this.state.breakLength
-    if(currentLength > 0){
-      return this.setState({breakLength: currentLength - 1})
-    }
-  }
-  onIncrementSession = () => {
-    // disable if timer running
-    const currentLength = this.state.sessionLength
-    if(currentLength < 60){
-      return this.setState({sessionLength: currentLength + 1})
-    }
-  }
-  onDecrementSession = () => {
-    // disable if timer running
-    const currentLength = this.state.sessionLength
-    if(currentLength > 0){
-      return this.setState({sessionLength: currentLength - 1})
-    }
-  }
+  onIncrementBreak = () => this.state.breakLength < 60 && this.state.timerState !== 'running' ? this.setState({breakLength: this.state.breakLength + 1}) : console.log('nothing')
+  onDecrementBreak = () => this.state.breakLength > 0 && this.state.timerState !== 'running' ? this.setState({breakLength: this.state.breakLength - 1}) : console.log('nothing')
+  onIncrementSession = () => this.state.sessionLength < 60 && this.state.timerState !== 'running' ? this.setState({sessionLength: this.state.sessionLength + 1 }) : console.log('nothing')
+  onDecrementSession = () =>  this.state.sessionLength > 0 && this.state.timerState !== 'running' ? this.setState({sessionLength: this.state.sessionLength - 1}) : console.log('nothing')
 
   onClickStartStop = () => {
     console.log('start or stop')
     // if timer stopped -  timer begin running from value of session length 
-    if(this.state.timerState === 'stopped') {this.setState({timerState:'running'})}
+    if(this.state.timerState === 'stopped') {return this.setState({timerState:'running'})}
 
-    else if(this.state.timerState === 'paused'){this.setState({timerState:'running'})}
+    else if(this.state.timerState === 'paused'){return this.setState({timerState:'running'})}
 
-    else if(this.state.timerState === 'running'){this.setState({timerState:'paused'})}
+    else if(this.state.timerState === 'running'){return this.setState({timerState:'paused'})}
   }
   onClickReset = () => {
     console.log('reset')
     // stop audio element from playing if playing - rewind to beginning of clip
     // time left reset to default state
-    this.setState({breakLength:5,sessionLength:25, timerState:'stopped',timeLeft:25})
+    return this.setState({breakLength:5,sessionLength:25, timerState:'stopped',timeLeft:25})
   }
   render() {
     return (
