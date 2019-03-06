@@ -15,7 +15,7 @@ class Timer extends Component {
       breakLength: 300,
       sessionLength: 1500,
       timerState: 'stopped', // state either stopped, running or paused
-      timeLeft: 1500,
+      timeLeft: 10,
       min: '25',
       sec: '00'
     }
@@ -61,26 +61,21 @@ class Timer extends Component {
     console.log('start or stop')
     // if timer stopped -  timer begin running from value of session length 
     if(this.state.timerState === 'stopped') {
-      // setInterval ( someFunc to set state count - 1, every 1000 ms)
-
       this.myInterval = setInterval( () => {
         const currentTimeLeft = this.state.timeLeft
+        // check if timer done
+        if(currentTimeLeft === 1) {
+          // check which timer was used then reset timer with other timer (session / break)
+          return this.state.currentTimer === 'session' ? this.setState({timeLeft: this.state.breakLength, currentTimer: 'break'}) : this.setState({timeLeft: this.state.sessionLength, currentTimer: 'session'})
+        }
+        // if timer not done count down 1 off of current time
         this.setState({timeLeft: currentTimeLeft - 1})
       }, 1000)
       return this.setState({timerState:'running'})
     }
-    
-    else if(this.state.timerState === 'paused'){
-      this.myInterval = setInterval( () => {
-          const currentTimeLeft = this.state.timeLeft
-          this.setState({timeLeft: currentTimeLeft - 1})
-        }, 1000)
-      return this.setState({timerState:'running'})
-    }
-
-    else if(this.state.timerState === 'running'){
+    else {
       clearInterval(this.myInterval)
-      return this.setState({timerState:'paused'})
+      return this.setState({timerState:'stopped'})
     }
   }
   onClickReset = () => {
