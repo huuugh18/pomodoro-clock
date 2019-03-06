@@ -11,15 +11,17 @@ class Timer extends Component {
   constructor(){
     super()
     this.state={
-        breakLength: 5,
-        sessionLength: 25,
-        timerState: 'stopped', // state either stopped, running or paused
-        timeLeft: 'mm:ss'
+      breakLength: 5,
+      sessionLength: 25,
+      timerState: 'stopped', // state either stopped, running or paused
+      timeLeft: 'mm:ss'
     }
-    this.onIncrementBreak = this.onIncrementBreak.bind(this)
-    this.onDecrementBreak = this.onDecrementBreak.bind(this)
-    this.onIncrementSession = this.onIncrementSession.bind(this)
-    this.onDecrementSession = this.onDecrementSession.bind(this)
+      this.onClickStartStop = this.onClickStartStop.bind(this)
+      this.onClickReset = this.onClickReset.bind(this)
+      this.onDecrementBreak = this.onDecrementBreak.bind(this)
+      this.onIncrementBreak = this.onIncrementBreak.bind(this)
+      this.onIncrementSession = this.onIncrementSession.bind(this)
+      this.onDecrementSession = this.onDecrementSession.bind(this)
   }
   onIncrementBreak = () => {
     // disable if timer running
@@ -50,16 +52,21 @@ class Timer extends Component {
       return this.setState({sessionLength: currentLength - 1})
     }
   }
+
   onClickStartStop = () => {
     console.log('start or stop')
     // if timer stopped -  timer begin running from value of session length 
-    // if timer running - pause timer
+    if(this.state.timerState === 'stopped') {this.setState({timerState:'running'})}
+
+    else if(this.state.timerState === 'paused'){this.setState({timerState:'running'})}
+
+    else if(this.state.timerState === 'running'){this.setState({timerState:'paused'})}
   }
   onClickReset = () => {
     console.log('reset')
     // stop audio element from playing if playing - rewind to beginning of clip
-    // break length back to 5 & session length to 25
     // time left reset to default state
+    this.setState({breakLength:5,sessionLength:25, timerState:'stopped',timeLeft:25})
   }
   render() {
     return (
@@ -69,7 +76,7 @@ class Timer extends Component {
             <Typography id='break-label' className='label' variant='h4'>
               Break Length
             </Typography>
-            <Fab
+            <Fab 
               id='break-decrement'
               className={'decrementBtn'}
               size='small'
