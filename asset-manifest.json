@@ -1,0 +1,14 @@
+{
+  "main.css": "/pomodoro-clock/static/css/main.cc832a45.chunk.css",
+  "main.js": "/pomodoro-clock/static/js/main.b7d372d0.chunk.js",
+  "main.js.map": "/pomodoro-clock/static/js/main.b7d372d0.chunk.js.map",
+  "runtime~main.js": "/pomodoro-clock/static/js/runtime~main.c417dc26.js",
+  "runtime~main.js.map": "/pomodoro-clock/static/js/runtime~main.c417dc26.js.map",
+  "static/js/2.bc449700.chunk.js": "/pomodoro-clock/static/js/2.bc449700.chunk.js",
+  "static/js/2.bc449700.chunk.js.map": "/pomodoro-clock/static/js/2.bc449700.chunk.js.map",
+  "index.html": "/pomodoro-clock/index.html",
+  "precache-manifest.9a53f24d916ffabeb64afd7110510e00.js": "/pomodoro-clock/precache-manifest.9a53f24d916ffabeb64afd7110510e00.js",
+  "service-worker.js": "/pomodoro-clock/service-worker.js",
+  "static/css/main.cc832a45.chunk.css.map": "/pomodoro-clock/static/css/main.cc832a45.chunk.css.map",
+  "static/media/App.css": "/pomodoro-clock/static/media/bg-cyber.ce2e6439.jpg"
+}
