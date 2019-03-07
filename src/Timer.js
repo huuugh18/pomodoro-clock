@@ -42,7 +42,7 @@ class Timer extends Component {
   }
   onDecrementBreak = () => {
     const length = this.state.breakLength
-    length > 59 && this.state.timerState !== 'running' ? // if timer running or length too low return
+    length > 60 && this.state.timerState !== 'running' ? // if timer running or length too low return
       this.state.currentTimer === 'break' ? // if current timer on break then reset time left to new break length
         this.setState({breakLength: length - 60, timeLeft: length - 60}) : this.setState({breakLength: length - 60}) 
       : console.log('nothing')
@@ -50,7 +50,7 @@ class Timer extends Component {
   }
   onDecrementSession = () =>  {
     const length = this.state.sessionLength
-    length > 59 && this.state.timerState !== 'running' ? // if timer running or length too low return
+    length > 60 && this.state.timerState !== 'running' ? // if timer running or length too low return
       this.state.currentTimer === 'session' ? // if current timer on session then reset time left to new session length
         this.setState({sessionLength: length - 60, timeLeft: length - 60}) : this.setState({sessionLength: length - 60})
       : console.log('nothing')
@@ -64,7 +64,7 @@ class Timer extends Component {
       this.myInterval = setInterval( () => {
         const currentTimeLeft = this.state.timeLeft
         // check if timer done
-        if(currentTimeLeft === 1) {
+        if(currentTimeLeft === 0) {
           // check which timer was used then reset timer with other timer (session / break)
           return this.state.currentTimer === 'session' ? this.setState({timeLeft: this.state.breakLength, currentTimer: 'break'}) : this.setState({timeLeft: this.state.sessionLength, currentTimer: 'session'})
         }
@@ -80,11 +80,15 @@ class Timer extends Component {
   }
   onClickReset = () => {
     console.log('reset')
+    clearInterval(this.myInterval)
     // stop audio element from playing if playing - rewind to beginning of clip
     // time left reset to default state
     return this.setState({breakLength:300,sessionLength:1500, timerState:'stopped',timeLeft:1500})
   }
   render() {
+    const displaySession = this.state.sessionLength / 60
+    const displayBreak = this.state.breakLength / 60
+    const timeDisplay = convertTime(this.state.timeLeft)
     return (
       <Paper id='timer'>
         <div id='timer-setting'>
@@ -102,7 +106,7 @@ class Timer extends Component {
               <MinusIcon />
             </Fab>
             <Typography id='break-length' className='lengthDisplay' variant='h4'>
-              {this.state.breakLength / 60}
+              {displayBreak}
             </Typography>
             <Fab
               id='break-increment'
@@ -128,7 +132,7 @@ class Timer extends Component {
               <MinusIcon />
             </Fab>
             <Typography id='session-length' className='lengthDisplay' variant='h4'>
-              {this.state.sessionLength / 60}
+              {displaySession}
             </Typography>
             <Fab
               id='session-increment'
@@ -142,8 +146,11 @@ class Timer extends Component {
           </div>
         </div>
         <div id='timer-display'>
+          <Typography id='timer-label'>
+            {this.state.currentTimer.toUpperCase()}          
+          </Typography>
           <div id='time-left'>
-            {this.state.timeLeft}          
+            {timeDisplay}          
           </div>
         </div>
         <div id='timer-controls'>
@@ -166,6 +173,16 @@ class Timer extends Component {
   }
 }
 
-
+const convertTime = time => {
+  let min = Math.floor(time / 60)
+  let sec = time - (min*60)
+  min = min < 10 ? `0${min}` : min
+  sec = sec < 10 ? `0${sec}` : sec
+  const displayTime = `${min}:${sec}`
+  if (displayTime === '00:00'){
+    console.log(displayTime)
+  }
+  return displayTime
+}
 
 export default Timer;
