@@ -87,15 +87,14 @@ class Timer extends Component {
       <Paper id='timer'>
         <div id='timer-setting'>
           <div id='break-container' className='setting-container'>
-            <audio id={'beep'} preload='auto'src={'https://goo.gl/65cBl1'} ref={ref => this.audio = ref}/>
-            <Typography id='break-label' className='label' variant='h4'> Break Length </Typography>
+            <Typography id='break-label' className='label' variant='h5'> Break Length </Typography>
             <Fab  id='break-decrement' className={'decrementBtn'} size='small' color='primary'
               onClick={this.onDecrementBreak}
               disabled={isTimerRunning}
             >
               <MinusIcon />
             </Fab>
-            <Typography id='break-length' className='lengthDisplay' variant='h4'> {displayBreak} </Typography>
+            <div id='break-length' className='lengthDisplay digital-text'> {displayBreak} </div>
             <Fab id='break-increment' className={'incrementBtn'}size='small'color='primary'
               onClick={this.onIncrementBreak}
               disabled={isTimerRunning}
@@ -104,14 +103,14 @@ class Timer extends Component {
             </Fab>
           </div>
           <div id='session-container' className='setting-container'>
-            <Typography id='session-label' className='label' variant='h4'> Session Length </Typography>
+            <Typography id='session-label' className='label' variant='h5'> Session Length </Typography>
             <Fab id='session-decrement' className={'decrementBtn'} size='small' color='primary'
               onClick={this.onDecrementSession}
               disabled={isTimerRunning}
             >
               <MinusIcon />
             </Fab>
-            <Typography id='session-length' className='lengthDisplay' variant='h4'> {displaySession} </Typography>
+            <div id='session-length' className='lengthDisplay digital-text'> {displaySession} </div>
             <Fab id='session-increment' className={'incrementBtn'} size='small' color='primary'
               onClick={this.onIncrementSession}
               disabled={isTimerRunning}
@@ -121,13 +120,14 @@ class Timer extends Component {
           </div>
         </div>
         <div id='timer-display'>
-          <Typography id='timer-label'> {this.state.currentTimer.toUpperCase()} </Typography>
-          <div id='time-left'> { timeDisplay } </div>
+          <div id='timer-label' className='digital-text'> {this.state.currentTimer.toUpperCase()} </div>
+          <div id='time-left' className='digital-text' >{ timeDisplay } </div>
         </div>
         <div id='timer-controls'>
-          <Button  id='start_stop' onClick={this.onClickStartStop} color='primary' variant='contained'> Start / Stop </Button>
-          <Button  id='reset' onClick={this.onClickReset} color='secondary' variant='contained'> Reset </Button>
+          <Button  id='start_stop' onClick={this.onClickStartStop} color='primary' variant='outlined'> Start / Stop </Button>
+          <Button  id='reset' onClick={this.onClickReset} color='secondary' variant='outlined'> Reset </Button>
         </div>
+        <audio id={'beep'} preload='auto'src={'https://goo.gl/65cBl1'} ref={ref => this.audio = ref}/>
       </Paper>
         
     );

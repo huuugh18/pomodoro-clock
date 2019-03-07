@@ -33,6 +33,7 @@
 .label{
     grid-area: label;
     justify-self: center;
+    padding: 10px;
 }
 .decrementBtn{
     grid-area: decrement;
@@ -50,10 +51,24 @@
 #timer-display{
     grid-area:timerDisplay;
     justify-self: center;
+    padding: 15px;
+}
+.digital-text{
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5em;
+    text-align: center;
 }
 #timer-controls{
     grid-area:timerControls;
+    justify-self: center;
+    padding-bottom: 15px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+#start_stop{
+    grid-area: 1 / 2 / 2 / 3
+}
+#reset{
+    grid-area: 1 / 3 / 2 / 4
 }
 
