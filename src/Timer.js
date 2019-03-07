@@ -58,13 +58,13 @@ class Timer extends Component {
   }
 
   onClickStartStop = () => {
-    console.log('start or stop')
     // if timer stopped -  timer begin running from value of session length 
     if(this.state.timerState === 'stopped') {
       this.myInterval = setInterval( () => {
         const currentTimeLeft = this.state.timeLeft
         // check if timer done
         if(currentTimeLeft === 0) {
+            this.audio.play()
           // check which timer was used then reset timer with other timer (session / break)
           return this.state.currentTimer === 'session' ? this.setState({timeLeft: this.state.breakLength, currentTimer: 'break'}) : this.setState({timeLeft: this.state.sessionLength, currentTimer: 'session'})
         }
@@ -81,9 +81,11 @@ class Timer extends Component {
   onClickReset = () => {
     console.log('reset')
     clearInterval(this.myInterval)
+    this.audio.pause()
+    this.audio.currentTime = 0
     // stop audio element from playing if playing - rewind to beginning of clip
     // time left reset to default state
-    return this.setState({breakLength:300,sessionLength:1500, timerState:'stopped',timeLeft:1500})
+    return this.setState({breakLength:300,sessionLength:1500, timerState:'stopped',timeLeft:1500,currentTimer:'session'})
   }
   render() {
     const displaySession = this.state.sessionLength / 60
@@ -93,6 +95,12 @@ class Timer extends Component {
       <Paper id='timer'>
         <div id='timer-setting'>
           <div id='break-container' className='setting-container'>
+            <audio 
+                id={'beep'} 
+                preload='auto'
+                src={'https://goo.gl/65cBl1'} 
+                ref={ref => this.audio = ref}>
+            </audio>
             <Typography id='break-label' className='label' variant='h4'>
               Break Length
             </Typography>

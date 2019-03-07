@@ -6,4 +6,3 @@
 // Timer has switched to Break time, but it didn't start with the correct value.: expected 1 to equal 5
 // AssertionError: Timer has switched to Break time, but it didn't start with the correct value.: expected 1 to equal 5
 
-
