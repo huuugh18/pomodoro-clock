@@ -125,8 +125,8 @@ class Timer extends Component {
           <div id='time-left'> { timeDisplay } </div>
         </div>
         <div id='timer-controls'>
-          <Button  id='start_stop' onClick={this.onClickStartStop}> Start / Stop </Button>
-          <Button  id='reset' onClick={this.onClickReset}> Reset </Button>
+          <Button  id='start_stop' onClick={this.onClickStartStop} color='primary' variant='contained'> Start / Stop </Button>
+          <Button  id='reset' onClick={this.onClickReset} color='secondary' variant='contained'> Reset </Button>
         </div>
       </Paper>
         
